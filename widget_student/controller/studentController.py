@@ -1,6 +1,4 @@
-from PySide6 import QtWidgets
-from widget_student.view import MainWindow
-import sys
+
 class StudentController:
     def __init__(self, model, view):
         self.model = model
@@ -15,10 +13,7 @@ class StudentController:
     def delete_student(self, id):
         self.model.delete(id)
         
-    def main(self):
-        app=QtWidgets.QApplication(sys.argv)
+
+    def setup(self):
         data = self.model.get_all()
-        window= MainWindow(data)
-        window.set_controller(self)
-        window.show()
-        app.exec_()
+        self.view.setupTableView(data)

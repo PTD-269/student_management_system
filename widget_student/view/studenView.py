@@ -1,5 +1,5 @@
 import sys
-from .MainWindow import Ui_MainWindow
+from .widget import Ui_Form
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
 
@@ -35,13 +35,12 @@ class DictionaryTableModel(QtCore.QAbstractTableModel):
                 return str(section)
     
 
-class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
-    def __init__(self, data):
-        super(MainWindow, self).__init__()
+class StudentView(QtWidgets.QWidget,Ui_Form):
+    def __init__(self):
+        super(StudentView, self).__init__()
         self.setupUi(self)
 
         self.controller = None
-
         # Button custom
         self.findButton.clicked.connect(self.find)
         self.addButton.clicked.connect(self.add)
@@ -54,6 +53,9 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         self.comboBox.setCurrentIndex(-1)
         self.comboBox.currentTextChanged.connect(self.text_changed)
 
+
+
+    def setupTableView(self, data):
         # TableView custom
         self.tableModel = DictionaryTableModel(data)
         self.tableView.setModel(self.tableModel)
@@ -109,19 +111,4 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         
         print("row", row)
 
-
-class StudentView:
-    def __init__(self):
-        self.controller = None
-
-    def set_controller(self, controller):
-        self.controller = controller
-
-    def show(self):
-        app=QtWidgets.QApplication(sys.argv)
-        data = self.controller.get_all_students()
-        self.window=MainWindow(data)
-        self.window.set_controller(self.controller)
-        self.window.show()
-        app.exec_()
 

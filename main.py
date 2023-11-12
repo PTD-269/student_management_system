@@ -1,14 +1,20 @@
-from widget_student.model import StudentModel
-from widget_student.view import StudentView
-from widget_student.controller import StudentController
 
-def main():
-    model = StudentModel()
-    view = StudentView()
-    controller = StudentController(model, view)
-    view.set_controller(controller)
-    controller.main()
+from widget_student import WidgetStudent
+from PySide6.QtWidgets import QApplication, QMainWindow
+import sys 
 
-# if __name__ == "__main__":
-main()
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        widget1 = WidgetStudent()
+
+        self.setCentralWidget(widget1)
+
+
+
+app = QApplication(sys.argv)
+window = MainWindow()
+window.show()
+app.exec_()
 

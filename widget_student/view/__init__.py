@@ -1,1 +1,1 @@
-from .studenView import StudentView, MainWindow
+from .studenView import StudentView
