@@ -66,9 +66,10 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         """Set controller to communicate for getting specific data"""
         self.controller = controller
     
-    def load(self, data):
+    def update_view(self, data):
         """Load new data for TableModel """
         self.tableModel._data = data
+        self.tableModel.layoutChanged.emit()
 
     def add(self):
         """Add object to database"""
@@ -79,9 +80,6 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         
         if last_name and first_name and major and gpa:
             self.controller.add_student(last_name, first_name, major, gpa)
-            data = self.controller.get_all_students()
-            self.load(data)
-            self.tableModel.layoutChanged.emit()
 
             self.lineEditLastName.setText("")
             self.lineEditFirstName.setText("")

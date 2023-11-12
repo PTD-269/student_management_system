@@ -9,6 +9,8 @@ class StudentController:
         return data
     def add_student(self, last_name, first_name, major, gpa):
         self.model.insert(last_name, first_name, major, gpa)
+        data = self.controller.get_all_students()
+        self.view.update_view(data)
 
     def delete_student(self, id):
         self.model.delete(id)
