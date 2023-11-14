@@ -6,7 +6,7 @@ from abc import abstractmethod
 class Base(declarative_base()):
     __abstract__ = True
     # Connect to database
-    engine = create_engine("sqlite:///objects.db")
+    engine = create_engine("sqlite:///students.db")
 
     # Update or create(if not exist) table to database
     @classmethod
