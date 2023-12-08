@@ -1,7 +1,6 @@
-from .base import AbstractModel
 from data.table import Student
 
-class StudentModel(AbstractModel):
+class StudentModel:
     def __init__(self):
         super().__init__()
 
@@ -9,8 +8,7 @@ class StudentModel(AbstractModel):
         session = Student.get_session()
         students = session.query(Student).all()
         session.close()
-        students_as_dict = self.convert_objects_to_dict(Student, students)
-        return students_as_dict
+        return students
     
     # Insert student to Student table in Database
     def insert(self, last_name, first_name, major, gpa):

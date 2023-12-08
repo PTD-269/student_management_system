@@ -1,1 +1,1 @@
-from .studenView import StudentView
+from widget_student.view.application.studenView import StudentView
