@@ -1,1 +1,0 @@
-from widget_student.view.application.studenView import StudentView
